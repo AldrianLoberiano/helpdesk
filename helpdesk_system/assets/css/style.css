@@ -157,6 +157,7 @@ body {
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
+    padding-right: 2px;
 }
 
 .notif-bell {
