@@ -103,7 +103,6 @@ $csrf_token = generateCSRFToken();
 <body class="login-page">
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
-            <div class="col-md-5">
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
