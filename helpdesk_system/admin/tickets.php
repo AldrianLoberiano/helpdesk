@@ -54,7 +54,6 @@ include __DIR__ . '/../includes/navbar.php';
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h3 mb-1 fw-bold">All Tickets</h1>
-            <p class="text-muted mb-0 small">View and manage all support tickets across the system</p>
         </div>
     </div>
 
