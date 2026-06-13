@@ -14,3 +14,4 @@ if (isset($_SESSION['user_id'])) {
         $db = getDB();
         
         // Clear remember token
+        $stmt = $db->prepare("UPDATE users SET remember_token = NULL WHERE id = ?");
