@@ -59,6 +59,7 @@ include __DIR__ . '/includes/navbar.php';
                         <?php if (!$notif['is_read']): ?>
                             <span class="badge bg-primary rounded-circle p-2">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                            </span>
                         <?php else: ?>
                             <span class="text-muted"></span>
                         <?php endif; ?>
