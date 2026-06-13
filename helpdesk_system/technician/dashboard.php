@@ -63,11 +63,13 @@ include __DIR__ . '/../includes/navbar.php';
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="page-banner">
-            <h1 class="h3 mb-1 fw-bold">Dashboard</h1>
-            <p class="text-muted mb-0 small">Your assigned tickets overview</p>
+        <div class="page-banner d-flex justify-content-between align-items-center w-100">
+            <div>
+                <h1 class="h3 mb-1 fw-bold">Dashboard</h1>
+                <p class="text-muted mb-0 small">Your assigned tickets overview</p>
+            </div>
+            <a href="tickets.php" class="btn btn-outline-primary">View All Tickets</a>
         </div>
-        <a href="tickets.php" class="btn btn-primary">View All Tickets</a>
     </div>
 
     <div class="row g-3 mb-4">
@@ -153,8 +155,27 @@ include __DIR__ . '/../includes/navbar.php';
                     <h6 class="m-0 fw-semibold">Tickets by Priority</h6>
                 </div>
                 <div class="card-body">
-                    <div style="position: relative; height: 220px;">
+                    <div style="position: relative; height: 200px;">
                         <canvas id="priorityChart"></canvas>
+                    </div>
+                    <div class="mt-3">
+                        <?php 
+                        $total_priority = array_sum(array_column($priority_data, 'count'));
+                        $priority_colors = ['Critical' => '#e63757', 'High' => '#e6a817', 'Medium' => '#2c7be5', 'Low' => '#17a673'];
+                        foreach ($priority_data as $row): 
+                            $pct = $total_priority > 0 ? round(($row['count'] / $total_priority) * 100, 1) : 0;
+                        ?>
+                        <div class="d-flex justify-content-between align-items-center py-1 border-bottom">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="status-dot" style="background-color: <?php echo $priority_colors[$row['priority']] ?? '#95aac9'; ?>;"></span>
+                                <span class="small fw-medium"><?php echo sanitize($row['priority']); ?></span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="small text-muted"><?php echo number_format($row['count']); ?> tickets</span>
+                                <span class="badge bg-light text-dark fw-semibold"><?php echo $pct; ?>%</span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -163,8 +184,27 @@ include __DIR__ . '/../includes/navbar.php';
                     <h6 class="m-0 fw-semibold">Tickets by Status</h6>
                 </div>
                 <div class="card-body">
-                    <div style="position: relative; height: 220px;">
+                    <div style="position: relative; height: 200px;">
                         <canvas id="statusChart"></canvas>
+                    </div>
+                    <div class="mt-3">
+                        <?php 
+                        $total_status = array_sum(array_column($status_data, 'count'));
+                        $status_colors = ['Open' => '#2c7be5', 'In Progress' => '#2d5a8e', 'Pending' => '#e6a817', 'Resolved' => '#17a673', 'Closed' => '#95aac9', 'Assigned' => '#2d5a8e'];
+                        foreach ($status_data as $row): 
+                            $pct = $total_status > 0 ? round(($row['count'] / $total_status) * 100, 1) : 0;
+                        ?>
+                        <div class="d-flex justify-content-between align-items-center py-1 border-bottom">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="status-dot" style="background-color: <?php echo $status_colors[$row['status']] ?? '#e63757'; ?>;"></span>
+                                <span class="small fw-medium"><?php echo sanitize($row['status']); ?></span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="small text-muted"><?php echo number_format($row['count']); ?> tickets</span>
+                                <span class="badge bg-light text-dark fw-semibold"><?php echo $pct; ?>%</span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -174,23 +214,63 @@ include __DIR__ . '/../includes/navbar.php';
 
 <script>
 const priorityCtx = document.getElementById('priorityChart').getContext('2d');
+const priorityLabels = <?php echo json_encode(array_column($priority_data, 'priority')); ?>;
+const priorityData = <?php echo json_encode(array_column($priority_data, 'count')); ?>;
+const totalPriority = priorityData.reduce(function(a, b) { return a + b; }, 0);
+
 new Chart(priorityCtx, {
     type: 'pie',
     data: {
-        labels: <?php echo json_encode(array_column($priority_data, 'priority')); ?>,
-        datasets: [{ data: <?php echo json_encode(array_column($priority_data, 'count')); ?>, backgroundColor: ['#e63757', '#e6a817', '#2c7be5', '#17a673'] }]
+        labels: priorityLabels.map(function(l, i) {
+            var pct = totalPriority > 0 ? Math.round((priorityData[i] / totalPriority) * 100) : 0;
+            return l + ' (' + priorityData[i] + ' - ' + pct + '%)';
+        }),
+        datasets: [{ data: priorityData, backgroundColor: ['#e63757', '#e6a817', '#2c7be5', '#17a673'], borderWidth: 2, borderColor: '#fff' }]
     },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10 } } } }
+    options: {
+        responsive: true, maintainAspectRatio: false, cutout: '0%',
+        plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12, padding: 8, font: { size: 11 } } },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) {
+                        var pct = totalPriority > 0 ? Math.round((ctx.parsed / totalPriority) * 100) : 0;
+                        return ctx.label + ': ' + ctx.parsed + ' tickets (' + pct + '%)';
+                    }
+                }
+            }
+        }
+    }
 });
 
 const statusCtx = document.getElementById('statusChart').getContext('2d');
+const statusLabels = <?php echo json_encode(array_column($status_data, 'status')); ?>;
+const statusData = <?php echo json_encode(array_column($status_data, 'count')); ?>;
+const totalStatus = statusData.reduce(function(a, b) { return a + b; }, 0);
+
 new Chart(statusCtx, {
     type: 'doughnut',
     data: {
-        labels: <?php echo json_encode(array_column($status_data, 'status')); ?>,
-        datasets: [{ data: <?php echo json_encode(array_column($status_data, 'count')); ?>, backgroundColor: ['#2c7be5', '#17a673', '#2d5a8e', '#e6a817', '#e63757', '#95aac9'] }]
+        labels: statusLabels.map(function(l, i) {
+            var pct = totalStatus > 0 ? Math.round((statusData[i] / totalStatus) * 100) : 0;
+            return l + ' (' + statusData[i] + ' - ' + pct + '%)';
+        }),
+        datasets: [{ data: statusData, backgroundColor: ['#2c7be5', '#17a673', '#2d5a8e', '#e6a817', '#e63757', '#95aac9'], borderWidth: 2, borderColor: '#fff' }]
     },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10 } } } }
+    options: {
+        responsive: true, maintainAspectRatio: false, cutout: '65%',
+        plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12, padding: 8, font: { size: 11 } } },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) {
+                        var pct = totalStatus > 0 ? Math.round((ctx.parsed / totalStatus) * 100) : 0;
+                        return ctx.label + ': ' + ctx.parsed + ' tickets (' + pct + '%)';
+                    }
+                }
+            }
+        }
+    }
 });
 </script>
 
