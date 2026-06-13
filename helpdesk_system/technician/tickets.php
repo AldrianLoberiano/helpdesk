@@ -125,7 +125,6 @@ include __DIR__ . '/../includes/navbar.php';
                                 <td><?php echo sanitize(substr($ticket['subject'], 0, 30)); ?></td>
                                 <td><?php echo sanitize($ticket['category_name']); ?></td>
                                 <td><?php echo sanitize($ticket['creator_name']); ?></td>
-                                <td><span class="badge bg-<?php echo $ticket['priority'] === 'Critical' ? 'danger' : ($ticket['priority'] === 'High' ? 'warning' : ($ticket['priority'] === 'Medium' ? 'info' : 'secondary')); ?>"><?php echo $ticket['priority']; ?></span></td>
                                 <td><span class="badge bg-<?php echo $ticket['status'] === 'Resolved' ? 'success' : ($ticket['status'] === 'Closed' ? 'secondary' : ($ticket['status'] === 'In Progress' ? 'primary' : 'warning')); ?>"><?php echo $ticket['status']; ?></span></td>
                                 <td><?php echo formatDate($ticket['created_at']); ?></td>
                                 <td>
