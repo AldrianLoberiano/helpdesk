@@ -12,3 +12,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db = getDB();
     $user_id = getCurrentUserId();
     
+    try {
