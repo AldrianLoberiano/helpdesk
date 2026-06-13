@@ -20,3 +20,4 @@ if (isset($_SESSION['user_id'])) {
         // Log activity
         $stmt = $db->prepare("INSERT INTO activity_logs (user_id, action, description, ip_address) VALUES (?, ?, ?, ?)");
         $stmt->execute([$user_id, 'Logout', 'User logged out', $_SERVER['REMOTE_ADDR']]);
+    } catch (PDOException $e) {
