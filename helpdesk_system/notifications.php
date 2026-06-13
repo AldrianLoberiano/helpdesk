@@ -100,3 +100,4 @@ document.getElementById('markAllReadBtn').addEventListener('click', function() {
         if (data.success) {
             window.location.reload();
         }
+    })
