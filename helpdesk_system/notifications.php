@@ -93,3 +93,4 @@ include __DIR__ . '/includes/navbar.php';
 document.getElementById('markAllReadBtn').addEventListener('click', function() {
     fetch(window.SITE_BASE + '/mark_notifications_read.php', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
