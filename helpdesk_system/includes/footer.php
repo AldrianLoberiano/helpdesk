@@ -32,7 +32,6 @@
             <div class="modal-content">
                 <div class="modal-body text-center p-5">
                     <div class="modal-icon-circle bg-danger-subtle mb-3">
-                        <div class="icon-circle bg-danger">?</div>
                     </div>
                     <h5 class="fw-bold mb-2">Are you sure you want to logout?</h5>
                     <p class="text-muted mb-0">You will be signed out of your account and redirected to the login page.</p>
