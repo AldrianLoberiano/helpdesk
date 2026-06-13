@@ -93,6 +93,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                                        data-notif-title="<?php echo htmlspecialchars($notif['title']); ?>"
                                        data-notif-message="<?php echo htmlspecialchars($notif['message']); ?>"
                                        data-notif-time="<?php echo formatDate($notif['created_at'], 'M d, Y h:i A'); ?>"
+                                       data-notif-link="<?php echo $notif['link'] ? SITE_URL . '/' . ltrim($notif['link'], './') : '#'; ?>"
                                         <div class="notification-title"><?php echo sanitize($notif['title']); ?></div>
                                         <div class="notification-message text-muted small"><?php echo sanitize(substr($notif['message'], 0, 50)); ?>...</div>
                                         <div class="notification-time text-muted small"><?php echo formatDate($notif['created_at'], 'M d, h:i A'); ?></div>
