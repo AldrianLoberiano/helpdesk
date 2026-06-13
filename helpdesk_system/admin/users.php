@@ -15,7 +15,6 @@ $message_type = '';
 // Handle user actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || !verifyCSRFToken($_POST['csrf_token'])) {
-        $message_type = 'danger';
     } else {
     $action = $_POST['action'] ?? '';
     
