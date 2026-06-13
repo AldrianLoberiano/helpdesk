@@ -183,6 +183,7 @@ include __DIR__ . '/../includes/navbar.php';
                                     <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
                                     <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                                     </button>
                                 </form>
                             </td>
