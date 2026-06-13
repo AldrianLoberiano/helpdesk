@@ -149,6 +149,7 @@ body {
 }
 
 .notif-link::after {
+    display: none;
 }
 
 .notif-bell-wrap {
