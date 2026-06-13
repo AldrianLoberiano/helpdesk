@@ -170,6 +170,7 @@ body {
     font-weight: 700;
     position: absolute;
     top: -4px;
+    right: -6px;
     line-height: 1;
     padding: 2px 4px;
     min-width: 14px;
