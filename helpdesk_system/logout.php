@@ -22,3 +22,4 @@ if (isset($_SESSION['user_id'])) {
         $stmt->execute([$user_id, 'Logout', 'User logged out', $_SERVER['REMOTE_ADDR']]);
     } catch (PDOException $e) {
         error_log("Logout error: " . $e->getMessage());
+    }
