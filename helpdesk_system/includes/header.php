@@ -7,6 +7,7 @@
 // Get notifications for current user
 $notifications = [];
 $unread_count = 0;
+$announce_unread_count = 0;
 $user_settings = [];
 if (isset($_SESSION['user_id'])) {
     $notifications = getUserNotifications(5);
