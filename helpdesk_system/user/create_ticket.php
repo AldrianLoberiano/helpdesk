@@ -102,7 +102,6 @@ include __DIR__ . '/../includes/navbar.php';
         <a href="dashboard.php" class="btn btn-outline-secondary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Back to Dashboard</a>
     </div>
 
-            <?php echo $flash['message']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
