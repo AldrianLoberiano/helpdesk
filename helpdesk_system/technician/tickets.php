@@ -57,6 +57,7 @@ include __DIR__ . '/../includes/navbar.php';
             <div>
                 <h1 class="h3 mb-1 fw-bold">My Assigned Tickets</h1>
                 <p class="text-muted mb-0 small">Tickets assigned to you that need attention</p>
+            </div>
         </div>
     </div>
 
