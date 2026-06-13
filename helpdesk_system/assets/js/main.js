@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(window.SITE_BASE + '/get_notification_count.php')
             .then(response => response.json())
             .then(data => {
+                var badge = document.querySelector('.notif-badge');
                 if (data.count > 0) {
                     if (!badge) {
                         var bellIcon = document.querySelector('.fa-bell');
