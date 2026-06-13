@@ -512,6 +512,7 @@ body {
 .table .badge {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 .badge-primary {
     background-color: #2d5a8e;
 }
