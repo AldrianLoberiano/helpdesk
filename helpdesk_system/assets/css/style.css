@@ -172,7 +172,11 @@ body {
     top: -4px;
     right: -6px;
     line-height: 1;
+    padding: 2px 3px;
+    min-width: 12px;
     text-align: center;
+    z-index: 1;
+    border: 1.5px solid var(--bg-navbar, #1e3a5f);
 }
 
 /* User Avatar in Navbar */
@@ -1113,7 +1117,7 @@ canvas {
 }
 
 /* Badge for notification count */
-.nav-item .badge {
+.nav-item .badge:not(.notif-badge) {
     position: relative;
     top: -4px;
     font-size: 0.65rem;
