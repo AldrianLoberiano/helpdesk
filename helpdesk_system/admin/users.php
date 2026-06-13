@@ -32,33 +32,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Validate
             if (empty($username) || empty($email) || empty($password) || empty($full_name) || empty($role_id)) {
-                $message = 'Please fill in all required fields.';
-                $message_type = 'danger';
+                setFlashMessage('danger', 'Please fill in all required fields.');
+                redirect('users.php');
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $message = 'Please enter a valid email address.';
-                $message_type = 'danger';
+                setFlashMessage('danger', 'Please enter a valid email address.');
+                redirect('users.php');
             } elseif (strlen($password) < 6) {
-                $message = 'Password must be at least 6 characters.';
-                $message_type = 'danger';
+                setFlashMessage('danger', 'Password must be at least 6 characters.');
+                redirect('users.php');
             } else {
                 try {
                     // Check if username or email exists
                     $stmt = $db->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
                     $stmt->execute([$username, $email]);
                     if ($stmt->fetch()) {
-                        $message = 'Username or email already exists.';
-                        $message_type = 'danger';
+                        setFlashMessage('danger', 'Username or email already exists.');
+                        redirect('users.php');
                     } else {
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                         $stmt = $db->prepare("INSERT INTO users (username, email, password, full_name, phone, role_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
                         $stmt->execute([$username, $email, $hashed_password, $full_name, $phone, $role_id, $department_id]);
                         
-                        $message = 'User added successfully.';
-                        $message_type = 'success';
+                        setFlashMessage('success', 'User added successfully.');
+                        redirect('users.php');
                     }
                 } catch (PDOException $e) {
-                    $message = 'Error adding user: ' . $e->getMessage();
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error adding user.');
+                    redirect('users.php');
                 }
             }
             break;
@@ -69,11 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
                     $stmt = $db->prepare("UPDATE users SET is_active = NOT is_active WHERE id = ?");
                     $stmt->execute([$user_id]);
-                    $message = 'User status updated.';
-                    $message_type = 'success';
+                    setFlashMessage('success', 'User status updated.');
+                    redirect('users.php');
                 } catch (PDOException $e) {
-                    $message = 'Error updating user.';
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error updating user.');
+                    redirect('users.php');
                 }
             }
             break;
@@ -84,11 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
                     $stmt = $db->prepare("DELETE FROM users WHERE id = ?");
                     $stmt->execute([$user_id]);
-                    $message = 'User deleted successfully.';
-                    $message_type = 'success';
+                    setFlashMessage('success', 'User deleted successfully.');
+                    redirect('users.php');
                 } catch (PDOException $e) {
-                    $message = 'Error deleting user.';
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error deleting user.');
+                    redirect('users.php');
                 }
             }
             break;
@@ -129,13 +129,6 @@ include __DIR__ . '/../includes/navbar.php';
             </button>
         </div>
     </div>
-
-    <?php if ($message): ?>
-        <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show" role="alert">
-            <?php echo $message; ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>
 
     <div class="card shadow">
         <div class="card-body">
