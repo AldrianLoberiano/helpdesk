@@ -19,6 +19,7 @@ body {
     min-height: 100vh;
 }
 
+.password-toggle-btn {
 .login-page .card {
     border: none;
     border-radius: 16px;
