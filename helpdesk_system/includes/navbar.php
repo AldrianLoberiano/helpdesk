@@ -69,6 +69,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
             
             <ul class="navbar-nav navbar-right-gap">
                 <li class="nav-item">
+                    <a class="nav-link <?php echo $current_page === 'announcements.php' ? 'active' : ''; ?>" 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle notif-link" href="#" role="button" data-bs-toggle="dropdown">
                         <span class="notif-bell-wrap">
