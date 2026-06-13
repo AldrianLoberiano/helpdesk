@@ -216,7 +216,6 @@ include __DIR__ . '/../includes/navbar.php';
 ?>
 
 <div class="container-fluid py-4">
-        </div>
     <?php endif; ?>
 
     <!-- Ticket Header -->
