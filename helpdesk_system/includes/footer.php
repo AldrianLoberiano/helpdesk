@@ -33,6 +33,7 @@
                 <div class="modal-body text-center p-5">
                     <div class="modal-icon-circle bg-danger-subtle mb-3">
                         <div class="icon-circle bg-danger">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                     </div>
                     <h5 class="fw-bold mb-2">Are you sure you want to logout?</h5>
                     <p class="text-muted mb-0">You will be signed out of your account and redirected to the login page.</p>
