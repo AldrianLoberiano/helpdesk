@@ -81,6 +81,7 @@ function getDB() {
  * Sanitize input
  */
 function sanitize($input) {
+    if ($input === null) return '';
     return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
 }
 
