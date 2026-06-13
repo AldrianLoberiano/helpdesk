@@ -118,7 +118,6 @@ $bg_body = $theme_mode === 'dark' ? '#111827' : '#f0f2f5';
         .container-fluid.py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
         <?php endif; ?>
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="wrapper">
