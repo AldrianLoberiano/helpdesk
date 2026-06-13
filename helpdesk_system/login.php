@@ -136,7 +136,6 @@ $csrf_token = generateCSRFToken();
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <div class="input-group">
                                     <input type="password" class="form-control" id="password" name="password" required>
                                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
                                 </div>
