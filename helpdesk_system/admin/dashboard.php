@@ -29,7 +29,6 @@ $stmt = $db->query("SELECT COUNT(*) FROM users u JOIN roles r ON u.role_id = r.i
 $stats['total_technicians'] = $stmt->fetchColumn();
 
 $stmt = $db->query("SELECT COUNT(*) FROM tickets WHERE DATE(created_at) = CURDATE()");
-$stats['today_tickets'] = $stmt->fetchColumn(); the 
 
 // Month-over-month changes
 $this_month = $db->query("SELECT COUNT(*) FROM tickets WHERE MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW())")->fetchColumn();
