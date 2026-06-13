@@ -167,7 +167,6 @@ include __DIR__ . '/includes/navbar.php';
         </div>
     </div>
 
-        <div class="alert alert-<?php echo $flash['type']; ?> alert-dismissible fade show" role="alert">
             <?php echo $flash['message']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
