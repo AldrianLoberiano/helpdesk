@@ -45,7 +45,6 @@ include __DIR__ . '/includes/navbar.php';
                 </button>
             </form>
         </div>
-            <button type="submit" class="btn btn-outline-primary">
                 Mark All as Read
             </button>
         </form>
