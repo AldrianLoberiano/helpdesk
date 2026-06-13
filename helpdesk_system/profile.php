@@ -167,7 +167,6 @@ include __DIR__ . '/includes/navbar.php';
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-lg-4 mb-4">
             <div class="card shadow">
