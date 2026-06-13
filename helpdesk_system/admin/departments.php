@@ -15,6 +15,8 @@ $message_type = '';
 // Handle department actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || !verifyCSRFToken($_POST['csrf_token'])) {
+        setFlashMessage('danger', 'Invalid request. Please try again.');
+        redirect('departments.php');
     } else {
     $action = $_POST['action'] ?? '';
     
@@ -24,21 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = trim($_POST['description'] ?? '');
             
             if (empty($department_name)) {
-                $message = 'Department name is required.';
-                $message_type = 'danger';
+                setFlashMessage('danger', 'Department name is required.');
+                redirect('departments.php');
             } else {
                 try {
                     $stmt = $db->prepare("INSERT INTO departments (department_name, description) VALUES (?, ?)");
                     $stmt->execute([$department_name, $description]);
-                    $message = 'Department added successfully.';
-                    $message_type = 'success';
+                    setFlashMessage('success', 'Department added successfully.');
+                    redirect('departments.php');
                 } catch (PDOException $e) {
                     if ($e->getCode() == 23000) {
-                        $message = 'Department name already exists.';
+                        setFlashMessage('danger', 'Department name already exists.');
                     } else {
-                        $message = 'Error adding department.';
+                        setFlashMessage('danger', 'Error adding department.');
                     }
-                    $message_type = 'danger';
+                    redirect('departments.php');
                 }
             }
             break;
@@ -49,17 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = trim($_POST['description'] ?? '');
             
             if (empty($department_name) || empty($id)) {
-                $message = 'Department name is required.';
-                $message_type = 'danger';
+                setFlashMessage('danger', 'Department name is required.');
+                redirect('departments.php');
             } else {
                 try {
                     $stmt = $db->prepare("UPDATE departments SET department_name = ?, description = ? WHERE id = ?");
                     $stmt->execute([$department_name, $description, $id]);
-                    $message = 'Department updated successfully.';
-                    $message_type = 'success';
+                    setFlashMessage('success', 'Department updated successfully.');
+                    redirect('departments.php');
                 } catch (PDOException $e) {
-                    $message = 'Error updating department.';
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error updating department.');
+                    redirect('departments.php');
                 }
             }
             break;
@@ -72,17 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE department_id = ?");
                     $stmt->execute([$id]);
                     if ($stmt->fetchColumn() > 0) {
-                        $message = 'Cannot delete department with assigned users.';
-                        $message_type = 'danger';
+                        setFlashMessage('danger', 'Cannot delete department with assigned users.');
+                        redirect('departments.php');
                     } else {
                         $stmt = $db->prepare("DELETE FROM departments WHERE id = ?");
                         $stmt->execute([$id]);
-                        $message = 'Department deleted successfully.';
-                        $message_type = 'success';
+                        setFlashMessage('success', 'Department deleted successfully.');
+                        redirect('departments.php');
                     }
                 } catch (PDOException $e) {
-                    $message = 'Error deleting department.';
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error deleting department.');
+                    redirect('departments.php');
                 }
             }
             break;
@@ -117,13 +119,6 @@ include __DIR__ . '/../includes/navbar.php';
             </button>
         </div>
     </div>
-
-    <?php if ($message): ?>
-        <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show" role="alert">
-            <?php echo $message; ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>
 
     <div class="row">
         <?php foreach ($departments as $dept): ?>
