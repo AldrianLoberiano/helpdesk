@@ -128,7 +128,6 @@ include __DIR__ . '/../includes/navbar.php';
                 Add User
             </button>
         </div>
-        </button>
     </div>
 
     <?php if ($message): ?>
