@@ -15,8 +15,8 @@ $message_type = '';
 // Handle category actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || !verifyCSRFToken($_POST['csrf_token'])) {
-        $message = 'Invalid request. Please try again.';
-        $message_type = 'danger';
+        setFlashMessage('danger', 'Invalid request. Please try again.');
+        redirect('categories.php');
     } else {
     $action = $_POST['action'] ?? '';
     
@@ -26,21 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = trim($_POST['description'] ?? '');
             
             if (empty($category_name)) {
-                $message = 'Category name is required.';
-                $message_type = 'danger';
+                setFlashMessage('danger', 'Category name is required.');
+                redirect('categories.php');
             } else {
                 try {
                     $stmt = $db->prepare("INSERT INTO ticket_categories (category_name, description) VALUES (?, ?)");
                     $stmt->execute([$category_name, $description]);
-                    $message = 'Category added successfully.';
-                    $message_type = 'success';
+                    setFlashMessage('success', 'Category added successfully.');
+                    redirect('categories.php');
                 } catch (PDOException $e) {
                     if ($e->getCode() == 23000) {
-                        $message = 'Category name already exists.';
+                        setFlashMessage('danger', 'Category name already exists.');
                     } else {
-                        $message = 'Error adding category.';
+                        setFlashMessage('danger', 'Error adding category.');
                     }
-                    $message_type = 'danger';
+                    redirect('categories.php');
                 }
             }
             break;
@@ -51,17 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = trim($_POST['description'] ?? '');
             
             if (empty($category_name) || empty($id)) {
-                $message = 'Category name is required.';
-                $message_type = 'danger';
+                setFlashMessage('danger', 'Category name is required.');
+                redirect('categories.php');
             } else {
                 try {
                     $stmt = $db->prepare("UPDATE ticket_categories SET category_name = ?, description = ? WHERE id = ?");
                     $stmt->execute([$category_name, $description, $id]);
-                    $message = 'Category updated successfully.';
-                    $message_type = 'success';
+                    setFlashMessage('success', 'Category updated successfully.');
+                    redirect('categories.php');
                 } catch (PDOException $e) {
-                    $message = 'Error updating category.';
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error updating category.');
+                    redirect('categories.php');
                 }
             }
             break;
@@ -72,11 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
                     $stmt = $db->prepare("UPDATE ticket_categories SET is_active = NOT is_active WHERE id = ?");
                     $stmt->execute([$id]);
-                    $message = 'Category status updated.';
-                    $message_type = 'success';
+                    setFlashMessage('success', 'Category status updated.');
+                    redirect('categories.php');
                 } catch (PDOException $e) {
-                    $message = 'Error updating category.';
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error updating category.');
+                    redirect('categories.php');
                 }
             }
             break;
@@ -89,17 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt = $db->prepare("SELECT COUNT(*) FROM tickets WHERE category_id = ?");
                     $stmt->execute([$id]);
                     if ($stmt->fetchColumn() > 0) {
-                        $message = 'Cannot delete category with existing tickets.';
-                        $message_type = 'danger';
+                        setFlashMessage('danger', 'Cannot delete category with existing tickets.');
+                        redirect('categories.php');
                     } else {
                         $stmt = $db->prepare("DELETE FROM ticket_categories WHERE id = ?");
                         $stmt->execute([$id]);
-                        $message = 'Category deleted successfully.';
-                        $message_type = 'success';
+                        setFlashMessage('success', 'Category deleted successfully.');
+                        redirect('categories.php');
                     }
                 } catch (PDOException $e) {
-                    $message = 'Error deleting category.';
-                    $message_type = 'danger';
+                    setFlashMessage('danger', 'Error deleting category.');
+                    redirect('categories.php');
                 }
             }
             break;
