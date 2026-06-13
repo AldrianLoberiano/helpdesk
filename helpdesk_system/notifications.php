@@ -37,6 +37,7 @@ include __DIR__ . '/includes/navbar.php';
             <div>
                 <h1 class="h3 mb-0 fw-bold">Notifications</h1>
                 <p class="text-muted mb-0 small">Stay updated with your latest activity alerts</p>
+            </div>
         </div>
         <form method="POST" action="mark_notifications_read.php" class="d-inline">
             <button type="submit" class="btn btn-outline-primary">
