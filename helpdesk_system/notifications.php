@@ -35,6 +35,7 @@ include __DIR__ . '/includes/navbar.php';
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="page-banner d-flex justify-content-between align-items-center w-100">
             <div>
+                <h1 class="h3 mb-0 fw-bold">Notifications</h1>
         </div>
         <form method="POST" action="mark_notifications_read.php" class="d-inline">
             <button type="submit" class="btn btn-outline-primary">
