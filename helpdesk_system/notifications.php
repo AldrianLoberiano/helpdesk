@@ -74,6 +74,7 @@ include __DIR__ . '/includes/navbar.php';
                     <div>
                         <?php if (!$notif['is_read']): ?>
                             <a href="notifications.php?mark_read=<?php echo $notif['id']; ?>&link=<?php echo urlencode($notif['link'] ?? '#'); ?>" 
+                               class="btn btn-sm btn-outline-primary" title="Mark as read">
                             </a>
                         <?php endif; ?>
                     </div>
