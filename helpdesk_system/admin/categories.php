@@ -126,6 +126,7 @@ include __DIR__ . '/../includes/navbar.php';
         <div class="page-banner d-flex justify-content-between align-items-center w-100">
             <div>
                 <h1 class="h3 mb-0 fw-bold">Category Management</h1>
+                <p class="text-muted mb-0 small">Define ticket categories for better organization</p>
         </div>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
 Add Category
