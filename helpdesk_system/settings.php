@@ -125,7 +125,6 @@ $presets = [
         <p class="text-muted mb-0">Customize your experience</p>
     </div>
 
-
     <div class="row g-4">
         <!-- Settings Navigation -->
         <div class="col-lg-3">
