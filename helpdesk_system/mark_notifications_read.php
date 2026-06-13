@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = getCurrentUserId();
     
     try {
+        if (isset($_POST['notif_id'])) {
         echo json_encode(['success' => true]);
     } catch (PDOException $e) {
         echo json_encode(['success' => false, 'error' => 'Database error']);
