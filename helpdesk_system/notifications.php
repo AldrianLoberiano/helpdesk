@@ -99,3 +99,4 @@ document.getElementById('markAllReadBtn').addEventListener('click', function() {
     .then(data => {
         if (data.success) {
             window.location.reload();
+        }
