@@ -39,3 +39,4 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Clear remember me cookie
+if (isset($_COOKIE['remember_token'])) {
