@@ -70,6 +70,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle notif-link" href="#" role="button" data-bs-toggle="dropdown">
                         <span class="notif-bell-wrap">
+                            <svg class="notif-bell" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C11.2 2 10.5 2.7 10.5 3.5V4.07C7.9 4.5 6 6.72 6 9.5V14L4 16V17H20V16L18 14V9.5C18 6.72 16.1 4.5 13.5 4.07V3.5C13.5 2.7 12.8 2 12 2ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z"/><path d="M7.5 1C6.7 1 6 1.7 6 2.5S6.7 4 7.5 4 9 3.3 9 2.5 8.3 1 7.5 1ZM16.5 1C15.7 1 15 1.7 15 2.5S15.7 4 16.5 4 18 3.3 18 2.5 17.3 1 16.5 1Z" opacity="0.5"/></svg>
                             <?php if ($unread_count > 0): ?>
                                 <span class="badge bg-danger notif-badge"><?php echo $unread_count; ?></span>
                             <?php endif; ?>
