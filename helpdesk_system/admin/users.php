@@ -120,6 +120,7 @@ include __DIR__ . '/../includes/navbar.php';
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="page-banner d-flex justify-content-between align-items-center w-100">
             <div>
+                <h1 class="h3 mb-0 fw-bold">User Management</h1>
         </div>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
 Add User
