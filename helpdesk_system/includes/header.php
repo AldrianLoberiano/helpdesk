@@ -10,9 +10,20 @@ $unread_count = 0;
 $announce_unread_count = 0;
 $user_settings = [];
 if (isset($_SESSION['user_id'])) {
-    $notifications = getUserNotifications(5);
-    $unread_count = getUnreadNotificationCount();
+    $db = getDB();
+    
+    // Get notifications excluding announcements
+    $stmt = $db->prepare("SELECT * FROM notifications WHERE user_id = ? AND (link != 'announcements.php' OR link IS NULL) ORDER BY created_at DESC LIMIT 5");
+    $stmt->execute([$_SESSION['user_id']]);
+    $notifications = $stmt->fetchAll();
+    
+    // Count unread excluding announcements
+    $stmt = $db->prepare("SELECT COUNT(*) FROM notifications WHERE user_id = ? AND is_read = 0 AND (link != 'announcements.php' OR link IS NULL)");
+    $stmt->execute([$_SESSION['user_id']]);
+    $unread_count = $stmt->fetchColumn();
+    
     $user_settings = getAllUserSettings($_SESSION['user_id']);
+    
 }
 
 // Theme settings
