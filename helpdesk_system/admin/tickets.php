@@ -16,6 +16,7 @@ $params = [];
 if ($status) {
     $where .= " AND t.status = ?";
     $params[] = $status;
+} else {
 }
 if ($priority) {
     $where .= " AND t.priority = ?";
