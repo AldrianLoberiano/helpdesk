@@ -9,3 +9,4 @@ require_once __DIR__ . '/config/database.php';
 // Check if user is already logged in
 if (isset($_SESSION['user_id'])) {
     $role = $_SESSION['role_name'] ?? '';
+    if ($role === 'Admin') {
