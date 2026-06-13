@@ -118,7 +118,6 @@ include __DIR__ . '/../includes/navbar.php';
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="page-banner">
             <p class="text-muted mb-0 small">Create, edit, and manage user accounts and roles</p>
         </div>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
