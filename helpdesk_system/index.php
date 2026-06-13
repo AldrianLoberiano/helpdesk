@@ -19,3 +19,4 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Redirect to login page
+redirect('login.php');
