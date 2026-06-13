@@ -31,6 +31,7 @@ body {
     color: #6c757d;
     display: flex;
     align-items: center;
+    justify-content: center;
 .login-page .card {
     border: none;
     border-radius: 16px;
