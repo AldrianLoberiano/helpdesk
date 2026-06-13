@@ -125,7 +125,6 @@ $presets = [
         <p class="text-muted mb-0">Customize your experience</p>
     </div>
 
-            <?php echo $flash['message']; ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
