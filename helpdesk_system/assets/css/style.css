@@ -23,6 +23,7 @@ body {
     position: absolute;
     right: 10px;
     top: 50%;
+    transform: translateY(-50%);
 .login-page .card {
     border: none;
     border-radius: 16px;
