@@ -24,3 +24,4 @@ if (isset($_SESSION['user_id'])) {
         error_log("Logout error: " . $e->getMessage());
     }
 }
+
