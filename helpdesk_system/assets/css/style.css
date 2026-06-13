@@ -21,6 +21,7 @@ body {
 
 .password-toggle-btn {
     position: absolute;
+    right: 10px;
 .login-page .card {
     border: none;
     border-radius: 16px;
