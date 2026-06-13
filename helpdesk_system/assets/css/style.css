@@ -493,6 +493,7 @@ body {
     padding: 0.75rem;
 }
 
+.table td.text-center {
 .table-hover tbody tr:hover {
     background-color: rgba(45, 90, 142, 0.04);
 }
