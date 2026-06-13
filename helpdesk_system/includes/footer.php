@@ -61,6 +61,31 @@
         </div>
     </div>
 
+    <!-- Notification View Modal -->
+    <div class="modal fade" id="notifModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="notif-modal-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d5a8e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        </span>
+                        <h6 class="modal-title fw-bold" id="notifModalTitle">Notification</h6>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-2">
+                    <p class="text-muted small mb-2" id="notifModalTime"></p>
+                    <div class="notif-modal-body" id="notifModalMessage"></div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-secondary px-3" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-primary px-3" id="notifModalLink">Go to Ticket</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <style>
     .icon-circle {
         width: 72px; height: 72px; border-radius: 50%;
@@ -109,6 +134,16 @@
         margin-right: 8px;
         font-weight: 700;
     }
+    .notif-modal-icon {
+        width: 36px; height: 36px; border-radius: 50%;
+        background: #e8f0fe; display: inline-flex;
+        align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .notif-modal-body {
+        background: #f8f9fc; border-radius: 10px; padding: 1rem;
+        border: 1px solid #e4e7ec; font-size: 0.9rem; line-height: 1.7;
+        color: #1a1d21; white-space: pre-wrap;
+    }
     </style>
 
     <script src="<?php echo SITE_URL; ?>/assets/js/bootstrap.bundle.min.js"></script>
@@ -149,6 +184,55 @@
                 resolveModal.show();
             }, 300);
         <?php endif; ?>
+
+        // Notification modal handler
+        var notifModal = new bootstrap.Modal(document.getElementById('notifModal'));
+        document.querySelectorAll('.notification-item').forEach(function(item) {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                var title = this.dataset.notifTitle;
+                var message = this.dataset.notifMessage;
+                var time = this.dataset.notifTime;
+                var link = this.dataset.notifLink;
+                var notifId = this.dataset.notifId;
+                var isRead = this.dataset.notifRead;
+
+                document.getElementById('notifModalTitle').textContent = title;
+                document.getElementById('notifModalMessage').textContent = message;
+                document.getElementById('notifModalTime').textContent = time;
+                var goBtn = document.getElementById('notifModalLink');
+                if (link && link !== '#') {
+                    goBtn.href = link;
+                    goBtn.style.display = '';
+                } else {
+                    goBtn.style.display = 'none';
+                }
+
+                notifModal.show();
+
+                // Mark as read
+                if (isRead === '0') {
+                    fetch(window.SITE_BASE + '/mark_notifications_read.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: 'notif_id=' + notifId
+                    }).then(function(r) { return r.json(); }).then(function(data) {
+                        if (data.success) {
+                            var badge = document.querySelector('.notif-badge');
+                            if (badge) {
+                                var newCount = parseInt(badge.textContent) - 1;
+                                if (newCount <= 0) {
+                                    badge.remove();
+                                } else {
+                                    badge.textContent = newCount;
+                                }
+                            }
+                            this.closest('.notification-item').classList.remove('unread');
+                        }
+                    }.bind(this)).catch(function() {});
+                }
+            });
+        });
     });
     </script>
 </body>
