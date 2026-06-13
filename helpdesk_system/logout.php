@@ -18,3 +18,4 @@ if (isset($_SESSION['user_id'])) {
         $stmt->execute([$user_id]);
         
         // Log activity
+        $stmt = $db->prepare("INSERT INTO activity_logs (user_id, action, description, ip_address) VALUES (?, ?, ?, ?)");
