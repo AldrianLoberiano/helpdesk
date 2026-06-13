@@ -31,6 +31,23 @@ $stats['total_technicians'] = $stmt->fetchColumn();
 $stmt = $db->query("SELECT COUNT(*) FROM tickets WHERE DATE(created_at) = CURDATE()");
 $stats['today_tickets'] = $stmt->fetchColumn();
 
+// Month-over-month changes
+$this_month = $db->query("SELECT COUNT(*) FROM tickets WHERE MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW())")->fetchColumn();
+$last_month = $db->query("SELECT COUNT(*) FROM tickets WHERE MONTH(created_at) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND YEAR(created_at) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))")->fetchColumn();
+$stats['tickets_change'] = $last_month > 0 ? round((($this_month - $last_month) / $last_month) * 100) : ($this_month > 0 ? 100 : 0);
+
+$this_month_resolved = $db->query("SELECT COUNT(*) FROM tickets WHERE status IN ('Resolved','Closed') AND MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW())")->fetchColumn();
+$last_month_resolved = $db->query("SELECT COUNT(*) FROM tickets WHERE status IN ('Resolved','Closed') AND MONTH(created_at) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND YEAR(created_at) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))")->fetchColumn();
+$stats['resolved_change'] = $last_month_resolved > 0 ? round((($this_month_resolved - $last_month_resolved) / $last_month_resolved) * 100) : ($this_month_resolved > 0 ? 100 : 0);
+
+$this_month_open = $db->query("SELECT COUNT(*) FROM tickets WHERE status NOT IN ('Resolved','Closed') AND MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW())")->fetchColumn();
+$last_month_open = $db->query("SELECT COUNT(*) FROM tickets WHERE status NOT IN ('Resolved','Closed') AND MONTH(created_at) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND YEAR(created_at) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))")->fetchColumn();
+$stats['open_change'] = $last_month_open > 0 ? round((($this_month_open - $last_month_open) / $last_month_open) * 100) : ($this_month_open > 0 ? 100 : 0);
+
+$this_month_pending = $db->query("SELECT COUNT(*) FROM tickets WHERE status = 'Pending' AND MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW())")->fetchColumn();
+$last_month_pending = $db->query("SELECT COUNT(*) FROM tickets WHERE status = 'Pending' AND MONTH(created_at) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND YEAR(created_at) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))")->fetchColumn();
+$stats['pending_change'] = $last_month_pending > 0 ? round((($this_month_pending - $last_month_pending) / $last_month_pending) * 100) : 0;
+
 $stmt = $db->query("SELECT t.*, tc.category_name, u.full_name as creator_name, 
                     CASE WHEN t.assigned_to IS NOT NULL THEN tu.full_name ELSE 'Unassigned' END as assignee_name
                     FROM tickets t 
@@ -84,7 +101,9 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Total Tickets</div>
                     <div class="stat-value"><?php echo number_format($stats['total_tickets']); ?></div>
-                    <div class="stat-meta">All time</div>
+                    <div class="stat-change <?php echo $stats['tickets_change'] >= 0 ? 'up' : 'down'; ?>">
+                        <?php echo $stats['tickets_change'] >= 0 ? '+' : ''; ?><?php echo $stats['tickets_change']; ?>% this month
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,7 +112,9 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Open Tickets</div>
                     <div class="stat-value"><?php echo number_format($stats['open_tickets']); ?></div>
-                    <div class="stat-meta">Awaiting resolution</div>
+                    <div class="stat-change <?php echo $stats['open_change'] >= 0 ? 'up' : 'down'; ?>">
+                        <?php echo $stats['open_change'] >= 0 ? '+' : ''; ?><?php echo $stats['open_change']; ?>% this month
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,7 +123,9 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Resolved</div>
                     <div class="stat-value"><?php echo number_format($stats['resolved_tickets']); ?></div>
-                    <div class="stat-meta">Successfully handled</div>
+                    <div class="stat-change <?php echo $stats['resolved_change'] >= 0 ? 'up' : 'down'; ?>">
+                        <?php echo $stats['resolved_change'] >= 0 ? '+' : ''; ?><?php echo $stats['resolved_change']; ?>% this month
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,7 +134,7 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Active Users</div>
                     <div class="stat-value"><?php echo number_format($stats['total_users']); ?></div>
-                    <div class="stat-meta">Registered accounts</div>
+                    <div class="stat-change neutral">Registered accounts</div>
                 </div>
             </div>
         </div>
@@ -123,7 +146,9 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Pending</div>
                     <div class="stat-value"><?php echo number_format($stats['pending_tickets']); ?></div>
-                    <div class="stat-meta">Needs attention</div>
+                    <div class="stat-change <?php echo $stats['pending_change'] >= 0 ? 'up' : 'down'; ?>">
+                        <?php echo $stats['pending_change'] >= 0 ? '+' : ''; ?><?php echo $stats['pending_change']; ?>% this month
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,7 +157,7 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Closed</div>
                     <div class="stat-value"><?php echo number_format($stats['closed_tickets']); ?></div>
-                    <div class="stat-meta">Archived tickets</div>
+                    <div class="stat-change neutral">Archived tickets</div>
                 </div>
             </div>
         </div>
@@ -141,7 +166,7 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Technicians</div>
                     <div class="stat-value"><?php echo number_format($stats['total_technicians']); ?></div>
-                    <div class="stat-meta">Support staff</div>
+                    <div class="stat-change neutral">Support staff</div>
                 </div>
             </div>
         </div>
@@ -150,7 +175,7 @@ include __DIR__ . '/../includes/navbar.php';
                 <div class="card-body">
                     <div class="stat-label">Today</div>
                     <div class="stat-value"><?php echo number_format($stats['today_tickets']); ?></div>
-                    <div class="stat-meta">Created today</div>
+                    <div class="stat-change neutral">Created today</div>
                 </div>
             </div>
         </div>
@@ -269,6 +294,56 @@ include __DIR__ . '/../includes/navbar.php';
                         </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-header">
+                    <h6 class="m-0 fw-semibold">Quick Links</h6>
+                </div>
+                <div class="card-body p-2">
+                    <a href="tickets.php" class="quick-link-item">
+                        <div class="quick-link-icon">TK</div>
+                        <div>
+                            <div class="fw-semibold small">All Tickets</div>
+                            <small class="text-muted">View and manage tickets</small>
+                        </div>
+                    </a>
+                    <a href="users.php" class="quick-link-item">
+                        <div class="quick-link-icon">US</div>
+                        <div>
+                            <div class="fw-semibold small">User Management</div>
+                            <small class="text-muted">Add or edit users</small>
+                        </div>
+                    </a>
+                    <a href="departments.php" class="quick-link-item">
+                        <div class="quick-link-icon">DP</div>
+                        <div>
+                            <div class="fw-semibold small">Departments</div>
+                            <small class="text-muted">Manage departments</small>
+                        </div>
+                    </a>
+                    <a href="categories.php" class="quick-link-item">
+                        <div class="quick-link-icon">CT</div>
+                        <div>
+                            <div class="fw-semibold small">Categories</div>
+                            <small class="text-muted">Manage ticket categories</small>
+                        </div>
+                    </a>
+                    <a href="reports.php" class="quick-link-item">
+                        <div class="quick-link-icon">RP</div>
+                        <div>
+                            <div class="fw-semibold small">Reports</div>
+                            <small class="text-muted">View analytics</small>
+                        </div>
+                    </a>
+                    <a href="notifications.php" class="quick-link-item">
+                        <div class="quick-link-icon">NF</div>
+                        <div>
+                            <div class="fw-semibold small">Notifications</div>
+                            <small class="text-muted">View all alerts</small>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
