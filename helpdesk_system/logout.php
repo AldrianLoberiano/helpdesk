@@ -13,3 +13,4 @@ if (isset($_SESSION['user_id'])) {
     try {
         $db = getDB();
         
+        // Clear remember token
