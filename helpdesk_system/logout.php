@@ -1,2 +1,3 @@
 <?php
 /**
+ * Logout Handler
