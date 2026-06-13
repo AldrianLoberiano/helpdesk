@@ -218,7 +218,36 @@ include __DIR__ . '/../includes/navbar.php';
                     <h6 class="m-0 font-weight-bold text-primary">Status Distribution</h6>
                 </div>
                 <div class="card-body">
-                    <canvas id="statusChart" height="300"></canvas>
+                    <div style="position: relative; height: 200px;">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                    <?php
+                    $total_tickets = $summary['total_tickets'];
+                    $status_arr = [
+                        ['status' => 'Created', 'count' => $summary['created']],
+                        ['status' => 'Pending', 'count' => $summary['pending']],
+                        ['status' => 'Assigned', 'count' => $summary['assigned']],
+                        ['status' => 'In Progress', 'count' => $summary['in_progress']],
+                        ['status' => 'Resolved', 'count' => $summary['resolved']],
+                        ['status' => 'Closed', 'count' => $summary['closed']],
+                    ];
+                    $status_colors = ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'];
+                    ?>
+                    <div class="status-summary mt-3">
+                        <?php foreach ($status_arr as $i => $row): ?>
+                        <?php $pct = $total_tickets > 0 ? round(($row['count'] / $total_tickets) * 100, 1) : 0; ?>
+                        <div class="d-flex justify-content-between align-items-center py-1 border-bottom">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="status-dot" style="background-color: <?php echo $status_colors[$i]; ?>;"></span>
+                                <span class="small fw-medium"><?php echo sanitize($row['status']); ?></span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="small text-muted"><?php echo number_format($row['count']); ?> tickets</span>
+                                <span class="badge bg-light text-dark fw-semibold"><?php echo $pct; ?>%</span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -244,7 +273,33 @@ include __DIR__ . '/../includes/navbar.php';
                     <h6 class="m-0 font-weight-bold text-primary">Tickets by Priority</h6>
                 </div>
                 <div class="card-body">
-                    <canvas id="priorityChart" height="300"></canvas>
+                    <div style="position: relative; height: 200px;">
+                        <canvas id="priorityChart"></canvas>
+                    </div>
+                    <?php
+                    $priority_arr = [
+                        ['priority' => 'Critical', 'count' => $summary['critical']],
+                        ['priority' => 'High', 'count' => $summary['high']],
+                        ['priority' => 'Medium', 'count' => $summary['medium']],
+                        ['priority' => 'Low', 'count' => $summary['low']],
+                    ];
+                    $priority_colors = ['#e74a3b', '#f6c23e', '#36b9cc', '#1cc88a'];
+                    ?>
+                    <div class="status-summary mt-3">
+                        <?php foreach ($priority_arr as $i => $row): ?>
+                        <?php $pct = $total_tickets > 0 ? round(($row['count'] / $total_tickets) * 100, 1) : 0; ?>
+                        <div class="d-flex justify-content-between align-items-center py-1 border-bottom">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="status-dot" style="background-color: <?php echo $priority_colors[$i]; ?>;"></span>
+                                <span class="small fw-medium"><?php echo sanitize($row['priority']); ?></span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="small text-muted"><?php echo number_format($row['count']); ?> tickets</span>
+                                <span class="badge bg-light text-dark fw-semibold"><?php echo $pct; ?>%</span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -315,23 +370,51 @@ new Chart(dailyCtx, {
 
 // Status Chart
 const statusCtx = document.getElementById('statusChart').getContext('2d');
+const statusLabels = ['Created', 'Pending', 'Assigned', 'In Progress', 'Resolved', 'Closed'];
+const statusData = [
+    <?php echo $summary['created']; ?>,
+    <?php echo $summary['pending']; ?>,
+    <?php echo $summary['assigned']; ?>,
+    <?php echo $summary['in_progress']; ?>,
+    <?php echo $summary['resolved']; ?>,
+    <?php echo $summary['closed']; ?>
+];
+const statusColors = ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'];
+const totalStatus = statusData.reduce(function(a, b) { return a + b; }, 0);
+
 new Chart(statusCtx, {
     type: 'doughnut',
     data: {
-        labels: ['Created', 'Pending', 'Assigned', 'In Progress', 'Resolved', 'Closed'],
+        labels: statusLabels.map(function(l, i) {
+            var pct = totalStatus > 0 ? Math.round((statusData[i] / totalStatus) * 100) : 0;
+            return l + ' (' + statusData[i] + ' - ' + pct + '%)';
+        }),
         datasets: [{
-            data: [
-                <?php echo $summary['created']; ?>,
-                <?php echo $summary['pending']; ?>,
-                <?php echo $summary['assigned']; ?>,
-                <?php echo $summary['in_progress']; ?>,
-                <?php echo $summary['resolved']; ?>,
-                <?php echo $summary['closed']; ?>
-            ],
-            backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796']
+            data: statusData,
+            backgroundColor: statusColors,
+            borderWidth: 2,
+            borderColor: '#fff'
         }]
     },
-    options: { responsive: true, maintainAspectRatio: false }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                backgroundColor: '#1a1d21',
+                padding: 10,
+                cornerRadius: 6,
+                callbacks: {
+                    label: function(ctx) {
+                        var pct = totalStatus > 0 ? Math.round((ctx.parsed / totalStatus) * 100) : 0;
+                        return ctx.label + ': ' + ctx.parsed + ' tickets (' + pct + '%)';
+                    }
+                }
+            }
+        }
+    }
 });
 
 // Category Chart
@@ -351,21 +434,48 @@ new Chart(categoryCtx, {
 
 // Priority Chart
 const priorityCtx = document.getElementById('priorityChart').getContext('2d');
+const priorityLabels = ['Critical', 'High', 'Medium', 'Low'];
+const priorityData = [
+    <?php echo $summary['critical']; ?>,
+    <?php echo $summary['high']; ?>,
+    <?php echo $summary['medium']; ?>,
+    <?php echo $summary['low']; ?>
+];
+const priorityColors = ['#e74a3b', '#f6c23e', '#36b9cc', '#1cc88a'];
+const totalPriority = priorityData.reduce(function(a, b) { return a + b; }, 0);
+
 new Chart(priorityCtx, {
     type: 'pie',
     data: {
-        labels: ['Critical', 'High', 'Medium', 'Low'],
+        labels: priorityLabels.map(function(l, i) {
+            var pct = totalPriority > 0 ? Math.round((priorityData[i] / totalPriority) * 100) : 0;
+            return l + ' (' + priorityData[i] + ' - ' + pct + '%)';
+        }),
         datasets: [{
-            data: [
-                <?php echo $summary['critical']; ?>,
-                <?php echo $summary['high']; ?>,
-                <?php echo $summary['medium']; ?>,
-                <?php echo $summary['low']; ?>
-            ],
-            backgroundColor: ['#e74a3b', '#f6c23e', '#36b9cc', '#1cc88a']
+            data: priorityData,
+            backgroundColor: priorityColors,
+            borderWidth: 2,
+            borderColor: '#fff'
         }]
     },
-    options: { responsive: true, maintainAspectRatio: false }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                backgroundColor: '#1a1d21',
+                padding: 10,
+                cornerRadius: 6,
+                callbacks: {
+                    label: function(ctx) {
+                        var pct = totalPriority > 0 ? Math.round((ctx.parsed / totalPriority) * 100) : 0;
+                        return ctx.label + ': ' + ctx.parsed + ' tickets (' + pct + '%)';
+                    }
+                }
+            }
+        }
+    }
 });
 </script>
 
