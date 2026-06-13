@@ -135,13 +135,6 @@ include __DIR__ . '/../includes/navbar.php';
         </div>
     </div>
 
-    <?php if ($message): ?>
-        <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show" role="alert">
-            <?php echo $message; ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>
-
     <div class="card shadow">
         <div class="card-body">
             <div class="table-responsive">
