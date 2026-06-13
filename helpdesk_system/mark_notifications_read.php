@@ -19,3 +19,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (PDOException $e) {
         echo json_encode(['success' => false, 'error' => 'Database error']);
     }
+    echo json_encode(['success' => false, 'error' => 'Invalid request method']);
