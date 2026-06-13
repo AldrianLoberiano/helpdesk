@@ -101,3 +101,4 @@ document.getElementById('markAllReadBtn').addEventListener('click', function() {
             window.location.reload();
         }
     })
+    .catch(error => console.error('Error:', error));
