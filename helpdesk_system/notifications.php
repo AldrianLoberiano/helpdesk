@@ -38,6 +38,7 @@ include __DIR__ . '/includes/navbar.php';
                 <h1 class="h3 mb-0 fw-bold">Notifications</h1>
                 <p class="text-muted mb-0 small">Stay updated with your latest activity alerts</p>
             </div>
+            <button type="button" class="btn btn-outline-primary" id="markAllReadBtn">
         </div>
     </div>
 
