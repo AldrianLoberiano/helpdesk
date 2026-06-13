@@ -17,6 +17,7 @@ if ($status) {
     $where .= " AND t.status = ?";
     $params[] = $status;
 } else {
+    $where .= " AND t.status NOT IN ('Resolved', 'Closed')";
 }
 if ($priority) {
     $where .= " AND t.priority = ?";
