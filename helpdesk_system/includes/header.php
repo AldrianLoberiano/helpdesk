@@ -27,6 +27,7 @@ if (isset($_SESSION['user_id'])) {
     // Count unread announcement notifications
     $stmt = $db->prepare("SELECT COUNT(*) FROM notifications WHERE user_id = ? AND is_read = 0 AND link = 'announcements.php'");
     $stmt->execute([$_SESSION['user_id']]);
+    $announce_unread_count = $stmt->fetchColumn();
 }
 
 // Theme settings
