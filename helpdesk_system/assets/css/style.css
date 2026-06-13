@@ -32,6 +32,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 5;
 .login-page .card {
     border: none;
     border-radius: 16px;
