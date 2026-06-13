@@ -75,6 +75,7 @@ include __DIR__ . '/includes/navbar.php';
                         <?php if (!$notif['is_read']): ?>
                             <a href="notifications.php?mark_read=<?php echo $notif['id']; ?>&link=<?php echo urlencode($notif['link'] ?? '#'); ?>" 
                                class="btn btn-sm btn-outline-primary" title="Mark as read">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                             </a>
                         <?php endif; ?>
                     </div>
