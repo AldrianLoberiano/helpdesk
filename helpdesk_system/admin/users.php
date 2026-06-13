@@ -15,6 +15,7 @@ $message_type = '';
 // Handle user actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || !verifyCSRFToken($_POST['csrf_token'])) {
+        setFlashMessage('danger', 'Invalid request. Please try again.');
     } else {
     $action = $_POST['action'] ?? '';
     
