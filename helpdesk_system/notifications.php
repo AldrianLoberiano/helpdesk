@@ -96,3 +96,4 @@ document.getElementById('markAllReadBtn').addEventListener('click', function() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     })
     .then(response => response.json())
+    .then(data => {
