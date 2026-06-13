@@ -45,6 +45,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                             <li><a class="dropdown-item" href="<?php echo $base; ?>admin/users.php">Users</a></li>
                             <li><a class="dropdown-item" href="<?php echo $base; ?>admin/departments.php">Departments</a></li>
                             <li><a class="dropdown-item" href="<?php echo $base; ?>admin/categories.php">Categories</a></li>
+                            <li><a class="dropdown-item" href="<?php echo $base; ?>admin/announcements.php">Announcements</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
