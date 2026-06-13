@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $db->prepare("UPDATE notifications SET is_read = 1 WHERE id = ? AND user_id = ?");
             $stmt->execute([$notif_id, $user_id]);
         } else {
-            $stmt = $db->prepare("UPDATE notifications SET is_read = 1 WHERE user_id = ? AND is_read = 0");
+            $stmt = $db->prepare("UPDATE notifications SET is_read = 1 WHERE user_id = ? AND is_read = 0 AND (link != 'announcements.php' OR link IS NULL)");
             $stmt->execute([$user_id]);
         }
         echo json_encode(['success' => true]);
