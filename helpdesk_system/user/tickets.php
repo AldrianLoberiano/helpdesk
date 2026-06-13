@@ -121,7 +121,6 @@ include __DIR__ . '/../includes/navbar.php';
                                 <td><a href="view_ticket.php?id=<?php echo $ticket['id']; ?>" class="fw-semibold"><?php echo sanitize($ticket['ticket_number']); ?></a></td>
                                 <td><?php echo sanitize(substr($ticket['subject'], 0, 30)); ?></td>
                                 <td><?php echo sanitize($ticket['category_name']); ?></td>
-                                <td><span class="badge bg-<?php echo $ticket['priority'] === 'Critical' ? 'danger' : ($ticket['priority'] === 'High' ? 'warning' : ($ticket['priority'] === 'Medium' ? 'info' : 'secondary')); ?>"><?php echo $ticket['priority']; ?></span></td>
                                 <td><span class="badge bg-<?php echo $ticket['status'] === 'Resolved' ? 'success' : ($ticket['status'] === 'Closed' ? 'secondary' : ($ticket['status'] === 'In Progress' ? 'primary' : 'warning')); ?>"><?php echo $ticket['status']; ?></span></td>
                                 <td><?php echo sanitize($ticket['assignee_name']); ?></td>
                                 <td><?php echo formatDate($ticket['created_at']); ?></td>
