@@ -24,6 +24,7 @@ if (isset($_SESSION['user_id'])) {
     
     $user_settings = getAllUserSettings($_SESSION['user_id']);
     
+    // Count unread announcement notifications
 }
 
 // Theme settings
