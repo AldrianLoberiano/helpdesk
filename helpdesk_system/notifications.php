@@ -92,3 +92,4 @@ include __DIR__ . '/includes/navbar.php';
 <script>
 document.getElementById('markAllReadBtn').addEventListener('click', function() {
     fetch(window.SITE_BASE + '/mark_notifications_read.php', {
+        method: 'POST',
