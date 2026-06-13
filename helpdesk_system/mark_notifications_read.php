@@ -4,3 +4,4 @@
  * IT Helpdesk Ticketing System
  */
 
+require_once __DIR__ . '/includes/auth.php';
