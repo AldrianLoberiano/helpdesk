@@ -149,7 +149,6 @@ body {
 }
 
 .notif-link::after {
-    margin-left: 1px;
     margin-top: 0;
     vertical-align: middle;
     position: relative;
