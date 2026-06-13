@@ -98,3 +98,4 @@ document.getElementById('markAllReadBtn').addEventListener('click', function() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            window.location.reload();
