@@ -172,6 +172,7 @@ include __DIR__ . '/../includes/navbar.php';
                                     <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                                     <button type="submit" class="btn btn-sm btn-outline-<?php echo $cat['is_active'] ? 'warning' : 'success'; ?>">
                                         <?php if ($cat['is_active']): ?>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                                     </button>
                                 </form>
                                 <form method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this category?');">
