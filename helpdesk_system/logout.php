@@ -28,3 +28,4 @@ if (isset($_SESSION['user_id'])) {
 // Destroy session
 $_SESSION = [];
 
+if (ini_get("session.use_cookies")) {
