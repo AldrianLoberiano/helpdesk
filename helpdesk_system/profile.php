@@ -167,7 +167,6 @@ include __DIR__ . '/includes/navbar.php';
         </div>
     </div>
 
-    <?php endif; ?>
 
     <div class="row">
         <div class="col-lg-4 mb-4">
