@@ -69,7 +69,6 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
             <ul class="navbar-nav navbar-right-gap">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle notif-link" href="#" role="button" data-bs-toggle="dropdown">
-                        <?php if ($unread_count > 0): ?>
                             <span class="badge bg-danger notif-badge"><?php echo $unread_count; ?></span>
                         <?php endif; ?>
                     </a>
