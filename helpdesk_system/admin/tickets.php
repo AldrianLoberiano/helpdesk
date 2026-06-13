@@ -139,6 +139,7 @@ include __DIR__ . '/../includes/navbar.php';
                                 <td><?php echo sanitize($ticket['creator_name']); ?></td>
                                 <td><?php echo $ticket['assignee_name'] === 'Unassigned' ? '<span class="text-muted">Unassigned</span>' : sanitize($ticket['assignee_name']); ?></td>
                                 <td class="text-center"><span class="badge bg-<?php echo $ticket['priority'] === 'Critical' ? 'danger' : ($ticket['priority'] === 'High' ? 'warning' : ($ticket['priority'] === 'Medium' ? 'info' : 'secondary')); ?>"><?php echo $ticket['priority']; ?></span></td>
+                                <td class="text-center"><span class="badge bg-<?php echo $ticket['status'] === 'Resolved' ? 'success' : ($ticket['status'] === 'Closed' ? 'secondary' : ($ticket['status'] === 'In Progress' ? 'primary' : 'warning')); ?>"><?php echo $ticket['status']; ?></span></td>
                                 <td><?php echo formatDate($ticket['created_at']); ?></td>
                                 <td><a href="view_ticket.php?id=<?php echo $ticket['id']; ?>" class="btn btn-sm btn-outline-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a></td>
                             </tr>
