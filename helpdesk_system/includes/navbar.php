@@ -74,6 +74,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                             <?php if ($unread_count > 0): ?>
                                 <span class="badge bg-danger notif-badge"><?php echo $unread_count; ?></span>
                             <?php endif; ?>
+                        </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end notification-dropdown" style="width: 300px;">
                         <li class="dropdown-header d-flex justify-content-between align-items-center">
