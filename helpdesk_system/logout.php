@@ -45,4 +45,5 @@ if (isset($_COOKIE['remember_token'])) {
 
 // Redirect to login page
 header("Location: login.php?logout=1");
+exit();
 ?>
