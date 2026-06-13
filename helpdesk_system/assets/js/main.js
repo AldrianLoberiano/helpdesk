@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 var badge = document.querySelector('.notif-badge');
                 if (data.count > 0) {
                     if (!badge) {
-                        if (bellIcon) {
                             var newBadge = document.createElement('span');
                             newBadge.className = 'badge bg-danger';
                             newBadge.textContent = data.count;
