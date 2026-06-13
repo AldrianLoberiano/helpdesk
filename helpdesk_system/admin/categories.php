@@ -133,7 +133,6 @@ include __DIR__ . '/../includes/navbar.php';
                 Add Category
             </button>
         </div>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
 Add Category
         </button>
     </div>
