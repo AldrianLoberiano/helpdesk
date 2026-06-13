@@ -23,3 +23,4 @@ if (isset($_SESSION['user_id'])) {
     } catch (PDOException $e) {
         error_log("Logout error: " . $e->getMessage());
     }
+}
