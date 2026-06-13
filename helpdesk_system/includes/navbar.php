@@ -89,6 +89,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                                 <li>
                                     <a class="dropdown-item notification-item <?php echo !$notif['is_read'] ? 'unread' : ''; ?>" 
                                        href="#"
+                                       data-notif-id="<?php echo $notif['id']; ?>"
                                         <div class="notification-title"><?php echo sanitize($notif['title']); ?></div>
                                         <div class="notification-message text-muted small"><?php echo sanitize(substr($notif['message'], 0, 50)); ?>...</div>
                                         <div class="notification-time text-muted small"><?php echo formatDate($notif['created_at'], 'M d, h:i A'); ?></div>
