@@ -58,6 +58,7 @@ include __DIR__ . '/../includes/navbar.php';
                 <h1 class="h3 mb-1 fw-bold">My Assigned Tickets</h1>
                 <p class="text-muted mb-0 small">Tickets assigned to you that need attention</p>
             </div>
+            <a href="dashboard.php" class="btn btn-outline-primary">
         </div>
     </div>
 
