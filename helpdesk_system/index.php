@@ -17,3 +17,4 @@ if (isset($_SESSION['user_id'])) {
         redirect('user/dashboard.php');
     }
 }
+
