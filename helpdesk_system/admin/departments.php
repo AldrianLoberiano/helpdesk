@@ -115,6 +115,7 @@ include __DIR__ . '/../includes/navbar.php';
             </div>
             <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addDepartmentModal">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;"><path d="M12 5v14M5 12h14"/></svg>
+                Add Department
         </div>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartmentModal">
 Add Department
