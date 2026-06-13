@@ -125,7 +125,6 @@ $presets = [
         <p class="text-muted mb-0">Customize your experience</p>
     </div>
 
-        </div>
     <?php endif; ?>
 
     <div class="row g-4">
