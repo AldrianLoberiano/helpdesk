@@ -30,6 +30,7 @@ body {
     cursor: pointer;
     color: #6c757d;
     display: flex;
+    align-items: center;
 .login-page .card {
     border: none;
     border-radius: 16px;
