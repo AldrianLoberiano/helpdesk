@@ -98,6 +98,7 @@ include __DIR__ . '/../includes/navbar.php';
         <div class="page-banner d-flex justify-content-between align-items-center w-100">
             <div>
                 <h1 class="h3 mb-0 fw-bold">Create New Ticket</h1>
+                <p class="text-muted mb-0 small">Submit a new support request to the helpdesk team</p>
         </div>
         <a href="dashboard.php" class="btn btn-outline-secondary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Back to Dashboard</a>
     </div>
