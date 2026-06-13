@@ -159,6 +159,7 @@ $csrf_token = generateCSRFToken();
         </div>
     </div>
 
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('togglePassword').addEventListener('click', function() {
             const password = document.getElementById('password');
