@@ -118,7 +118,6 @@ include __DIR__ . '/../includes/navbar.php';
                 Add Department
             </button>
         </div>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartmentModal">
         </button>
     </div>
 
