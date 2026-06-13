@@ -17,3 +17,4 @@ if (isset($_SESSION['user_id'])) {
         $stmt = $db->prepare("UPDATE users SET remember_token = NULL WHERE id = ?");
         $stmt->execute([$user_id]);
         
+        // Log activity
