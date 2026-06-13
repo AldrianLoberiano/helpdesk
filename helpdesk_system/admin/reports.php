@@ -294,7 +294,6 @@ include __DIR__ . '/../includes/navbar.php';
 </div>
 
 <!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 // Daily Trend Chart
 const dailyCtx = document.getElementById('dailyTrendChart').getContext('2d');
