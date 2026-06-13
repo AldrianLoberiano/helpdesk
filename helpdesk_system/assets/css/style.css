@@ -27,6 +27,7 @@ body {
     background: none;
     border: none;
     padding: 4px;
+    cursor: pointer;
 .login-page .card {
     border: none;
     border-radius: 16px;
