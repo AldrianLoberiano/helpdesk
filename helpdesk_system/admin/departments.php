@@ -112,6 +112,7 @@ include __DIR__ . '/../includes/navbar.php';
             <div>
                 <h1 class="h3 mb-0 fw-bold">Department Management</h1>
                 <p class="text-muted mb-0 small">Organize your teams by managing departments</p>
+            </div>
         </div>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartmentModal">
 Add Department
