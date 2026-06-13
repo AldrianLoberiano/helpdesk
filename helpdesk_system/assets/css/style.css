@@ -35,6 +35,7 @@ body {
     z-index: 5;
 }
 
+.password-toggle-btn:hover {
 .login-page .card {
     border: none;
     border-radius: 16px;
