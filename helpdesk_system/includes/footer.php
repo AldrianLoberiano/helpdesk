@@ -111,6 +111,7 @@
     }
     </style>
 
+    <script src="<?php echo SITE_URL; ?>/assets/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo SITE_URL; ?>/assets/js/main.js"></script>
     
     <?php if (isset($extra_scripts)): ?>
