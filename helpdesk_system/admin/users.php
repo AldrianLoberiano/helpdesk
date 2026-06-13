@@ -128,7 +128,6 @@ include __DIR__ . '/../includes/navbar.php';
                 Add User
             </button>
         </div>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
         </button>
     </div>
 
