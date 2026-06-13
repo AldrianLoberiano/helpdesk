@@ -6,3 +6,4 @@
 
 require_once __DIR__ . '/config/database.php';
 
+// Check if user is logged in
