@@ -11,3 +11,4 @@ if (isset($_SESSION['user_id'])) {
     $role = $_SESSION['role_name'] ?? '';
     if ($role === 'Admin') {
         redirect('admin/dashboard.php');
+    } elseif ($role === 'Technician') {
