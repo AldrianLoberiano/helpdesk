@@ -133,7 +133,6 @@ include __DIR__ . '/../includes/navbar.php';
                 Add Category
             </button>
         </div>
-Add Category
         </button>
     </div>
 
