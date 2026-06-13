@@ -157,26 +157,27 @@ body {
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
-    padding-right: 2px;
 }
 
 .notif-bell {
     display: block;
     vertical-align: middle;
+    color: #fff;
 }
 
 .notif-badge {
-    font-size: 0.45rem;
+    font-size: 0.5rem;
     font-weight: 700;
     position: absolute;
-    top: -4px;
-    right: -6px;
+    top: -2px;
+    right: -8px;
     line-height: 1;
-    padding: 2px 3px;
-    min-width: 12px;
+    padding: 2px 4px;
+    min-width: 14px;
     text-align: center;
     z-index: 1;
     border: 1.5px solid var(--bg-navbar, #1e3a5f);
+    border-radius: 50%;
 }
 
 /* User Avatar in Navbar */
