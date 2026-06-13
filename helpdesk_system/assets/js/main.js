@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             var newBadge = document.createElement('span');
                             newBadge.className = 'badge bg-danger notif-badge';
                             newBadge.textContent = data.count;
+                            bellWrap.appendChild(newBadge);
                         }
                     } else {
                         badge.textContent = data.count;
