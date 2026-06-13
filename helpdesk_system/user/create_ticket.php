@@ -95,7 +95,6 @@ include __DIR__ . '/../includes/navbar.php';
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="page-banner">
             <h1 class="h3 mb-0 fw-bold">Create New Ticket</h1>
             <p class="text-muted mb-0 small">Submit a new support request to the helpdesk team</p>
         </div>
