@@ -15,3 +15,4 @@ if (isset($_SESSION['user_id'])) {
         redirect('technician/dashboard.php');
     } else {
         redirect('user/dashboard.php');
+    }
