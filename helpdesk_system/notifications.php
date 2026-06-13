@@ -45,7 +45,6 @@ include __DIR__ . '/includes/navbar.php';
                 </button>
             </form>
         </div>
-        <form method="POST" action="mark_notifications_read.php" class="d-inline">
             <button type="submit" class="btn btn-outline-primary">
                 Mark All as Read
             </button>
