@@ -58,6 +58,7 @@ include __DIR__ . '/../includes/navbar.php';
                 <h1 class="h3 mb-1 fw-bold">All Tickets</h1>
                 <p class="text-muted mb-0 small">View and manage all support tickets across the system</p>
             </div>
+            <a href="dashboard.php" class="btn btn-outline-primary">
         </div>
     </div>
 
