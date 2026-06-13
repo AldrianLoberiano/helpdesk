@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.count > 0) {
                     if (!badge) {
                         var bellWrap = document.querySelector('.notif-bell-wrap');
+                        if (bellWrap) {
                             var newBadge = document.createElement('span');
                             newBadge.className = 'badge bg-danger';
                             newBadge.textContent = data.count;
