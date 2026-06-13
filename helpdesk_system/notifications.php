@@ -57,7 +57,6 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="d-flex align-items-start p-3 mb-2 rounded <?php echo !$notif['is_read'] ? 'bg-light' : ''; ?>">
                     <div class="me-3">
                         <?php if (!$notif['is_read']): ?>
-                            <span class="badge bg-primary rounded-circle p-2"></span>
                         <?php else: ?>
                             <span class="text-muted"></span>
                         <?php endif; ?>
