@@ -30,3 +30,4 @@ include __DIR__ . '/includes/navbar.php';
 
     <div class="row g-3 mb-4">
         <div class="col-md-4">
+            <div class="card shadow-sm border-0">
