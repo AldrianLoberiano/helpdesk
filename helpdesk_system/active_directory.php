@@ -23,3 +23,4 @@ include __DIR__ . '/includes/navbar.php';
 ?>
 
 <div class="container-fluid py-4">
+        <h1 class="h3 mb-0 fw-bold">Active Directory</h1>
