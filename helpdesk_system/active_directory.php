@@ -33,3 +33,4 @@ include __DIR__ . '/includes/navbar.php';
             <div class="card shadow-sm border-0">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
