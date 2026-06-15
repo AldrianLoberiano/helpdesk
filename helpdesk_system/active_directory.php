@@ -14,3 +14,4 @@ $stmt = $db->query("SELECT u.*, r.role_name, d.department_name
 $users = $stmt->fetchAll();
 
 // Get counts
+$total_users = count($users);
