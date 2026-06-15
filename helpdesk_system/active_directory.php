@@ -29,3 +29,4 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 
     <div class="row g-3 mb-4">
+        <div class="col-md-4">
