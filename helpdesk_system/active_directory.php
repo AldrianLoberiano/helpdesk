@@ -20,3 +20,4 @@ $inactive_users = $total_users - $active_users;
 
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
+?>
