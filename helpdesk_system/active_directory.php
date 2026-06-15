@@ -58,3 +58,4 @@ include __DIR__ . '/includes/navbar.php';
                         <div>
                             <div class="text-muted small">Active</div>
                             <div class="h4 mb-0 fw-bold text-success"><?php echo $active_users; ?></div>
+                        </div>
