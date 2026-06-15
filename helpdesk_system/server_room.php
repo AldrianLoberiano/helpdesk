@@ -61,6 +61,181 @@ include __DIR__ . '/includes/navbar.php';
         </div>
     </div>
 
+    <!-- Network Topology -->
+    <div class="row g-3 mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-transparent border-bottom-0 pb-0 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 010 8.49m-8.48-.01a6 6 0 010-8.49m11.31-2.82a10 10 0 010 14.14m-14.14 0a10 10 0 010-14.14"/></svg>
+                        Network Topology
+                    </h5>
+                    <span class="badge bg-success pulse-badge">
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor" style="vertical-align: 1px;"><circle cx="4" cy="4" r="4"/></svg>
+                        All Systems Operational
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="topology-container" id="topologyContainer">
+                        <!-- Internet -->
+                        <div class="topo-node topo-internet" style="left: 50%; top: 0;">
+                            <div class="topo-icon topo-icon-internet">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                            </div>
+                            <div class="topo-label">Internet</div>
+                            <div class="topo-sublabel">WAN</div>
+                        </div>
+
+                        <!-- Core Router -->
+                        <div class="topo-node topo-router" style="left: 50%; top: 18%;">
+                            <div class="topo-icon topo-icon-router">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="20" height="7" rx="2" ry="2"/><rect x="2" y="3" width="20" height="7" rx="2" ry="2"/><line x1="12" y1="10" x2="12" y2="14"/></svg>
+                            </div>
+                            <div class="topo-label">Core Router</div>
+                            <div class="topo-sublabel">192.168.1.1</div>
+                            <span class="topo-status topo-status-online"></span>
+                        </div>
+
+                        <!-- Main Firewall -->
+                        <div class="topo-node topo-firewall" style="left: 50%; top: 34%;">
+                            <div class="topo-icon topo-icon-firewall">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div class="topo-label">Main Firewall</div>
+                            <div class="topo-sublabel">192.168.1.254</div>
+                            <span class="topo-status topo-status-online"></span>
+                        </div>
+
+                        <!-- Server Room -->
+                        <div class="topo-server-room" style="left: 50%; top: 50%;">
+                            <div class="topo-server-room-label">Server Room</div>
+                            <div class="topo-server-room-box">
+                                <div class="topo-server" title="SRV-DC01 - Domain Controller">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    <span>DC01</span>
+                                </div>
+                                <div class="topo-server" title="SRV-FILE01 - File Server">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    <span>FILE01</span>
+                                </div>
+                                <div class="topo-server" title="SRV-WEB01 - Web Server">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    <span>WEB01</span>
+                                </div>
+                                <div class="topo-server" title="SRV-DB01 - Database Server">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    <span>DB01</span>
+                                </div>
+                                <div class="topo-server" title="SRV-BKP01 - Backup Server">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    <span>BKP01</span>
+                                </div>
+                                <div class="topo-server topo-server-warning" title="SRV-APP01 - Application Server (High Load)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    <span>APP01</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floor 1 Switch -->
+                        <div class="topo-node topo-switch" style="left: 20%; top: 62%;">
+                            <div class="topo-icon topo-icon-switch">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                            </div>
+                            <div class="topo-label">Floor 1 Switch</div>
+                            <div class="topo-sublabel">192.168.1.2</div>
+                            <span class="topo-status topo-status-online"></span>
+                        </div>
+
+                        <!-- Floor 2 Switch -->
+                        <div class="topo-node topo-switch" style="left: 50%; top: 62%;">
+                            <div class="topo-icon topo-icon-switch">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                            </div>
+                            <div class="topo-label">Floor 2 Switch</div>
+                            <div class="topo-sublabel">192.168.1.3</div>
+                            <span class="topo-status topo-status-online"></span>
+                        </div>
+
+                        <!-- Floor 3 Switch -->
+                        <div class="topo-node topo-switch" style="left: 80%; top: 62%;">
+                            <div class="topo-icon topo-icon-switch">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                            </div>
+                            <div class="topo-label">Floor 3 Switch</div>
+                            <div class="topo-sublabel">192.168.1.4</div>
+                            <span class="topo-status topo-status-online"></span>
+                        </div>
+
+                        <!-- Lobby WiFi AP -->
+                        <div class="topo-node topo-ap" style="left: 30%; top: 80%;">
+                            <div class="topo-icon topo-icon-ap">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                            </div>
+                            <div class="topo-label">Lobby WiFi AP</div>
+                            <div class="topo-sublabel">192.168.1.101</div>
+                            <span class="topo-status topo-status-online"></span>
+                        </div>
+
+                        <!-- Cafeteria WiFi AP -->
+                        <div class="topo-node topo-ap" style="left: 70%; top: 80%;">
+                            <div class="topo-icon topo-icon-ap">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                            </div>
+                            <div class="topo-label">Cafeteria WiFi AP</div>
+                            <div class="topo-sublabel">192.168.1.102</div>
+                            <span class="topo-status topo-status-online"></span>
+                        </div>
+
+                        <!-- Connection Lines (SVG) -->
+                        <svg class="topo-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <!-- Internet to Router -->
+                            <line x1="50" y1="6" x2="50" y2="18" class="topo-line"/>
+                            <!-- Router to Firewall -->
+                            <line x1="50" y1="24" x2="50" y2="34" class="topo-line"/>
+                            <!-- Firewall to Server Room -->
+                            <line x1="50" y1="40" x2="50" y2="50" class="topo-line"/>
+                            <!-- Firewall to Floor 1 Switch -->
+                            <line x1="50" y1="40" x2="20" y2="62" class="topo-line"/>
+                            <!-- Firewall to Floor 2 Switch -->
+                            <line x1="50" y1="40" x2="50" y2="62" class="topo-line"/>
+                            <!-- Firewall to Floor 3 Switch -->
+                            <line x1="50" y1="40" x2="80" y2="62" class="topo-line"/>
+                            <!-- Floor 1 Switch to Lobby AP -->
+                            <line x1="20" y1="68" x2="30" y2="80" class="topo-line topo-line-wifi"/>
+                            <!-- Floor 3 Switch to Cafeteria AP -->
+                            <line x1="80" y1="68" x2="70" y2="80" class="topo-line topo-line-wifi"/>
+                        </svg>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="d-flex justify-content-center gap-4 mt-3 flex-wrap">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="topo-legend-dot topo-icon-router" style="width: 16px; height: 16px;"></div>
+                            <span class="small text-muted">Router</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="topo-legend-dot topo-icon-firewall" style="width: 16px; height: 16px;"></div>
+                            <span class="small text-muted">Firewall</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="topo-legend-dot topo-icon-switch" style="width: 16px; height: 16px;"></div>
+                            <span class="small text-muted">Switch</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="topo-legend-dot topo-icon-ap" style="width: 16px; height: 16px;"></div>
+                            <span class="small text-muted">Access Point</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="topo-legend-dot bg-dark" style="width: 16px; height: 16px;"></div>
+                            <span class="small text-muted">Server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Network Load & Bandwidth -->
     <div class="row g-3 mb-4">
         <div class="col-md-8">
@@ -361,6 +536,132 @@ include __DIR__ . '/includes/navbar.php';
 }
 .reboot-btn:hover {
     transform: scale(1.05);
+}
+
+/* Network Topology */
+.topology-container {
+    position: relative;
+    height: 450px;
+    background: linear-gradient(135deg, #f8f9fc 0%, #e9ecef 100%);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.topo-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.topo-line {
+    stroke: #adb5bd;
+    stroke-width: 0.3;
+    stroke-dasharray: 2 1;
+}
+.topo-line-wifi {
+    stroke: #20c997;
+    stroke-dasharray: 1 1;
+}
+.topo-node {
+    position: absolute;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+.topo-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 6px;
+    color: white;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.topo-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+.topo-icon-internet { background: linear-gradient(135deg, #6c757d, #495057); }
+.topo-icon-router { background: linear-gradient(135deg, #2d5a8e, #1a3a5c); }
+.topo-icon-firewall { background: linear-gradient(135deg, #e63757, #c5283f); }
+.topo-icon-switch { background: linear-gradient(135deg, #17a673, #0d8f5f); }
+.topo-icon-ap { background: linear-gradient(135deg, #20c997, #12b886); }
+.topo-label {
+    font-weight: 600;
+    font-size: 12px;
+    color: #1a1d21;
+    white-space: nowrap;
+}
+.topo-sublabel {
+    font-size: 10px;
+    color: #6c757d;
+    white-space: nowrap;
+}
+.topo-status {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.topo-status-online { background: #28a745; box-shadow: 0 0 6px #28a745; }
+.topo-status-offline { background: #dc3545; }
+.topo-server-room {
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+.topo-server-room-label {
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #1a1d21;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.9);
+    padding: 4px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.topo-server-room-box {
+    background: rgba(26,29,33,0.95);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    max-width: 320px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.topo-server {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #28a745;
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.topo-server:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.05);
+}
+.topo-server-warning {
+    color: #ffc107;
+    border-color: rgba(255,193,7,0.3);
+}
+.topo-legend-dot {
+    border-radius: 4px;
 }
 </style>
 
