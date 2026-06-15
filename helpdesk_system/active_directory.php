@@ -41,3 +41,4 @@ include __DIR__ . '/includes/navbar.php';
                         <div>
                             <div class="text-muted small">Total Employees</div>
                             <div class="h4 mb-0 fw-bold"><?php echo $total_users; ?></div>
+                        </div>
