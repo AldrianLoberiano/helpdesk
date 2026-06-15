@@ -72,6 +72,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                            href="#" role="button" data-bs-toggle="dropdown">Tools</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="<?php echo $base; ?>active_directory.php">Active Directory</a></li>
+                            <li><a class="dropdown-item" href="<?php echo $base; ?>server_room.php">Server Room</a></li>
             </ul>
             
             <ul class="navbar-nav navbar-right-gap">
