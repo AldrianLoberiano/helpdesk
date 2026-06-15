@@ -66,6 +66,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                     </li>
                 <?php endif; ?>
 
+                <?php if (in_array($role, ['Admin', 'Technician'])): ?>
             </ul>
             
             <ul class="navbar-nav navbar-right-gap">
