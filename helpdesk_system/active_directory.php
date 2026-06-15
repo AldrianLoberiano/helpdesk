@@ -17,3 +17,4 @@ $users = $stmt->fetchAll();
 $total_users = count($users);
 $active_users = count(array_filter($users, fn($u) => $u['is_active']));
 $inactive_users = $total_users - $active_users;
+
