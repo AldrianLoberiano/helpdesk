@@ -25,3 +25,4 @@ include __DIR__ . '/includes/navbar.php';
 <div class="container-fluid py-4">
     <div class="page-banner mb-4">
         <h1 class="h3 mb-0 fw-bold">Active Directory</h1>
+        <p class="text-muted mb-0 small">Company employee directory and information</p>
