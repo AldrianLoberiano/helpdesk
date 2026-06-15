@@ -65,6 +65,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                            href="<?php echo $base; ?>user/create_ticket.php">New Ticket</a>
                     </li>
                 <?php endif; ?>
+
             </ul>
             
             <ul class="navbar-nav navbar-right-gap">
