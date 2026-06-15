@@ -69,6 +69,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                 <?php if (in_array($role, ['Admin', 'Technician'])): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle <?php echo in_array($current_page, ['active_directory.php', 'server_room.php', 'remote_desktop.php']) ? 'active' : ''; ?>" 
+                           href="#" role="button" data-bs-toggle="dropdown">Tools</a>
             </ul>
             
             <ul class="navbar-nav navbar-right-gap">
