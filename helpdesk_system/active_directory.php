@@ -7,3 +7,4 @@ $db = getDB();
 
 // Get all users with roles and departments
 $stmt = $db->query("SELECT u.*, r.role_name, d.department_name 
+                    FROM users u 
