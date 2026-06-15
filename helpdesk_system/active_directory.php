@@ -28,3 +28,4 @@ include __DIR__ . '/includes/navbar.php';
         <p class="text-muted mb-0 small">Company employee directory and information</p>
     </div>
 
+    <div class="row g-3 mb-4">
