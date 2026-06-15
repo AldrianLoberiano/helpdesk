@@ -74,6 +74,7 @@ foreach (array_slice($name_parts, 0, 2) as $part) {
                             <li><a class="dropdown-item" href="<?php echo $base; ?>active_directory.php">Active Directory</a></li>
                             <li><a class="dropdown-item" href="<?php echo $base; ?>server_room.php">Server Room</a></li>
                             <li><a class="dropdown-item" href="<?php echo $base; ?>remote_desktop.php">Remote Desktop</a></li>
+                        </ul>
             </ul>
             
             <ul class="navbar-nav navbar-right-gap">
