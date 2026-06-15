@@ -11,3 +11,4 @@ $stmt = $db->query("SELECT u.*, r.role_name, d.department_name
                     JOIN roles r ON u.role_id = r.id 
                     LEFT JOIN departments d ON u.department_id = d.id
                     ORDER BY u.full_name ASC");
+$users = $stmt->fetchAll();
