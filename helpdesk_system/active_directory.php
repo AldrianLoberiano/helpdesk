@@ -13,3 +13,4 @@ $stmt = $db->query("SELECT u.*, r.role_name, d.department_name
                     ORDER BY u.full_name ASC");
 $users = $stmt->fetchAll();
 
+// Get counts
