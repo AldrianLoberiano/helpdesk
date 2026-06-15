@@ -61,3 +61,80 @@ include __DIR__ . '/includes/navbar.php';
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="bg-danger bg-opacity-10 rounded-3 p-3">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e63757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-muted small">Inactive</div>
+                            <div class="h4 mb-0 fw-bold text-danger"><?php echo $inactive_users; ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="directoryTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Photo</th>
+                            <th>Full Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                            <th>Last Login</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($users as $user): ?>
+                        <tr>
+                            <td><?php echo $user['id']; ?></td>
+                            <td>
+                                <?php if (!empty($user['profile_picture'])): ?>
+                                    <img src="<?php echo SITE_URL; ?>/uploads/profile/<?php echo sanitize($user['profile_picture']); ?>" 
+                                         alt="<?php echo sanitize($user['full_name']); ?>" class="user-list-photo">
+                                <?php else: ?>
+                                    <div class="user-list-avatar"><?php echo strtoupper(substr($user['full_name'], 0, 1)); ?></div>
+                                <?php endif; ?>
+                            </td>
+                            <td class="fw-semibold"><?php echo sanitize($user['full_name']); ?></td>
+                            <td><?php echo sanitize($user['username']); ?></td>
+                            <td><?php echo sanitize($user['email']); ?></td>
+                            <td><?php echo $user['phone'] ? sanitize($user['phone']) : 'N/A'; ?></td>
+                            <td>
+                                <span class="badge bg-<?php echo $user['role_name'] === 'Admin' ? 'danger' : ($user['role_name'] === 'Technician' ? 'primary' : 'success'); ?>">
+                                    <?php echo $user['role_name']; ?>
+                                </span>
+                            </td>
+                            <td><?php echo $user['department_name'] ? sanitize($user['department_name']) : 'N/A'; ?></td>
+                            <td>
+                                <span class="badge bg-<?php echo $user['is_active'] ? 'success' : 'danger'; ?>">
+                                    <?php echo $user['is_active'] ? 'Active' : 'Inactive'; ?>
+                                </span>
+                            </td>
+                            <td><?php echo $user['last_login'] ? formatDate($user['last_login']) : 'Never'; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include __DIR__ . '/includes/footer.php'; ?>
