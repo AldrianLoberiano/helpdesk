@@ -118,6 +118,7 @@ include __DIR__ . '/includes/navbar.php';
                             <td><?php echo $user['phone'] ? sanitize($user['phone']) : 'N/A'; ?></td>
                             <td>
                                 <span class="badge bg-<?php echo $user['role_name'] === 'Admin' ? 'danger' : ($user['role_name'] === 'Technician' ? 'primary' : 'success'); ?>">
+                                    <?php echo sanitize($user['role_name']); ?>
                                 </span>
                             </td>
                             <td><?php echo $user['department_name'] ? sanitize($user['department_name']) : 'N/A'; ?></td>
