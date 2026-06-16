@@ -8,3 +8,4 @@ include __DIR__ . '/includes/navbar.php';
 ?>
 
 <div class="container-fluid py-4">
+    <div class="row">
