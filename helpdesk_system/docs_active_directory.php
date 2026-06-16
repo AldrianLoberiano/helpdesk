@@ -14,3 +14,4 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="card-body">
                     <h6 class="fw-bold mb-3">Documentation</h6>
                     <nav class="nav flex-column nav-pills">
+                        <a class="nav-link text-start active" href="#overview">Overview</a>
