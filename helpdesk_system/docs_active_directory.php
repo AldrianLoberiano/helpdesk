@@ -25,3 +25,4 @@ include __DIR__ . '/includes/navbar.php';
             </div>
         </div>
         <div class="col-lg-9">
+            <div class="card shadow-sm border-0">
