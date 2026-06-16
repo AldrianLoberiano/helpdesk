@@ -22,3 +22,4 @@ include __DIR__ . '/includes/navbar.php';
                         <a class="nav-link text-start" href="#tips">Tips</a>
                     </nav>
                 </div>
+            </div>
