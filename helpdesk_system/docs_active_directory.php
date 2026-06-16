@@ -12,3 +12,4 @@ include __DIR__ . '/includes/navbar.php';
         <div class="col-lg-3">
             <div class="card shadow-sm border-0 sticky-top" style="top: 80px;">
                 <div class="card-body">
+                    <h6 class="fw-bold mb-3">Documentation</h6>
