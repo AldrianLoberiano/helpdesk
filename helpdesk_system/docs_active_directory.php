@@ -23,3 +23,4 @@ include __DIR__ . '/includes/navbar.php';
                     </nav>
                 </div>
             </div>
+        </div>
