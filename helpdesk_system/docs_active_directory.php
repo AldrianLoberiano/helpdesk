@@ -16,3 +16,4 @@ include __DIR__ . '/includes/navbar.php';
                     <nav class="nav flex-column nav-pills">
                         <a class="nav-link text-start active" href="#overview">Overview</a>
                         <a class="nav-link text-start" href="#view-users">Viewing Employees</a>
+                        <a class="nav-link text-start" href="#search">Searching Users</a>
