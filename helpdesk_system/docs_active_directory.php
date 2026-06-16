@@ -11,3 +11,4 @@ include __DIR__ . '/includes/navbar.php';
     <div class="row">
         <div class="col-lg-3">
             <div class="card shadow-sm border-0 sticky-top" style="top: 80px;">
+                <div class="card-body">
