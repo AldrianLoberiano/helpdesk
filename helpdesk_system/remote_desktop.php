@@ -282,7 +282,7 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="card-body" style="max-height: 500px; overflow-y: auto;">
                     <div id="userList">
                         <?php foreach ($users as $user): ?>
-                        <div class="user-computer-card p-2 mb-2 rounded cursor-pointer" 
+                        <div class="user-computer-card p-2 mb-2 rounded" style="cursor: pointer;"
                              data-user-id="<?php echo $user['id']; ?>"
                              data-name="<?php echo sanitize($user['full_name']); ?>"
                              data-dept="<?php echo sanitize($user['department_name'] ?? 'N/A'); ?>"
@@ -301,7 +301,7 @@ include __DIR__ . '/includes/navbar.php';
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-primary connect-btn" 
-                                        onclick="connectToUser(<?php echo $user['id']; ?>, '<?php echo sanitize($user['full_name']); ?>', '<?php echo sanitize($user['username']); ?>')">
+                                        onclick="connectToUser(<?php echo (int)$user['id']; ?>, '<?php echo htmlspecialchars(addslashes($user['full_name']), ENT_QUOTES, 'UTF-8'); ?>', '<?php echo htmlspecialchars(addslashes($user['username']), ENT_QUOTES, 'UTF-8'); ?>')">
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                                     Connect
                                 </button>
