@@ -81,7 +81,7 @@ function getUserNotifications($limit = 10) {
     try {
         $db = getDB();
         $stmt = $db->prepare("SELECT * FROM notifications WHERE user_id = ? ORDER BY created_at DESC LIMIT ?");
-        $stmt->execute([getCurrentUserId(), $limit]);
+        $stmt->execute([getCurrentUserId(), (int)$limit]);
         return $stmt->fetchAll();
     } catch (PDOException $e) {
         return [];
